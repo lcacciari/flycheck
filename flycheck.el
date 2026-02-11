@@ -8926,6 +8926,7 @@ Variables are taken from `flycheck-emacs-lisp-checkdoc-variables'."
 
 (defconst flycheck-org-lint-variables
   '(org-directory
+     org-babel-load-languages
     org-id-locations-file)  ; File path only, not contents
   "Variables inherited by the org-lint subprocess.
 
