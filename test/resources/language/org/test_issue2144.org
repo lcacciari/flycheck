@@ -1,0 +1,19 @@
+* Testing for issue #2144
+Checker ~org-lint~ fails on code-source blocks header, signaling an invalid language.
+
+This should pass always.
+#+begin_src emacs-lisp
+  (prin1 org-babel-load-languages)
+#+end_src
+
+Use a language whose handler is included in org distribution.
+#+begin_src shell
+  for i in 1 2 3 4; do
+      echo $i
+  done
+#+end_src
+
+#+BEGIN_SRC http
+GET https://api.github.com/repos/zweifisch/ob-http/languages
+Accept: application/vnd.github.moondragon+json
+#+END_SRC

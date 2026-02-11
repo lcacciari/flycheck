@@ -5211,7 +5211,23 @@ The manifest path is relative to
     (flycheck-ert-should-syntax-check
      "language/org/valid.org" 'org-mode)))
 
+(flycheck-ert-def-checker-test org-lint-issue2144-ok org nil
+   (let ((inhibit-message nil) (org-babel-load-languages '((emacs-lisp . t) (shell . t) (http . t))))
+     (flycheck-ert-should-syntax-check
+      "language/org/test_issue2144.org" 'org-mode)))
+
+(flycheck-ert-def-checker-test org-lint-issue2144-ko org nil
+   (let ((inhibit-message nil))
+     (flycheck-ert-should-syntax-check
+      "language/org/test_issue2144.org" 'org-mode
+      '(10 nil info "Unknown source block language: 'shell'" :checker org-lint)
+      '(16 nil info "Unknown source block language: 'http'" :checker org-lint))))
+
+
 (flycheck-ert-initialize flycheck-test-resources-directory)
+
+
+
 
 (provide 'flycheck-test)
 
